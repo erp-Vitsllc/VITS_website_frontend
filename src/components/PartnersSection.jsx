@@ -2,12 +2,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Facebook, Instagram, Linkedin, ExternalLink } from 'lucide-react';
 
 const partners = [
-    { name: 'HIKVISION', logo: '/src/assets/hikvision.png', facebook: '#', instagram: '#', linkedin: '#' },
-    { name: 'Absen Energy', logo: '/src/assets/absenenery.png', facebook: '#', linkedin: '#' },
-    { name: 'inferrix', logo: '/src/assets/inferrix.png', linkedin: '#' },
-    { name: 'Videonetics', logo: '/src/assets/videonetics.png', facebook: '#', instagram: '#', linkedin: '#' },
-    { name: 'trex', logo: '/src/assets/trex.png', linkedin: '#' },
-    { name: 'ZEBRA', logo: '/src/assets/zebra.png', facebook: '#', linkedin: '#' },
+    { name: 'HIKVISION', logo: '/assets/hikvision.png', facebook: '#', instagram: '#', linkedin: '#' },
+    { name: 'Absen Energy', logo: '/assets/absenenery.png', facebook: '#', linkedin: '#' },
+    { name: 'inferrix', logo: '/assets/inferrix.png', linkedin: '#' },
+    { name: 'Videonetics', logo: '/assets/videonetics.png', facebook: '#', instagram: '#', linkedin: '#' },
+    { name: 'trex', logo: '/assets/trex.png', linkedin: '#' },
+    { name: 'ZEBRA', logo: '/assets/zebra.png', facebook: '#', linkedin: '#' },
 ];
 
 const PartnersSection = () => {

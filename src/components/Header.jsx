@@ -2,7 +2,7 @@ import React from 'react';
 import { Phone, Mail, Home, MessageCircle, Menu } from 'lucide-react';
 
 const Header = ({ controller }) => {
-    const logoPath = "/src/assets/vega-icon.png";
+    const logoPath = "/assets/vega-icon.png";
     const { config, activeTab, handleNavClick, openWhatsApp } = controller;
 
     return (

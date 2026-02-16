@@ -4,7 +4,7 @@ export const siteConfig = {
         phone2: "+971555907064",
         email: "sales@vitsllc.com",
         whatsapp: "https://wa.me/971555907064",
-        logo: "/src/assets/icon vega.png"
+        logo: "/assets/vega-icon.png"
     },
     navigation: [
         { label: "Home", path: "/", active: true },
@@ -21,6 +21,7 @@ export const siteConfig = {
     ],
     hero: {
         title: "Solutions Beyond Technology",
-        videoPath: "/src/assets/home_bg.mov"
+        videoPath: "/assets/home_bg.mov"
     }
 };
+

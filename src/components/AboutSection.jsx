@@ -7,7 +7,7 @@ const AboutSection = () => {
             <div className="about-container">
                 <div className="about-image-wrapper">
                     <img
-                        src="/src/assets/globe.png"
+                        src="/assets/globe.png"
                         alt="Global Network"
                         className="globe-image"
                     />
