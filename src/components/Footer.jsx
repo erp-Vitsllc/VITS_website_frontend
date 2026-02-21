@@ -25,10 +25,19 @@ const blogs = [
 ];
 
 const quickLinks = [
-    "ABOUT US", "LEADERSHIP TEAM", "OUR JOURNEY", "CONTACT US", "LATEST NEWS", "TERMS OF SERVICE"
+    "ABOUT US", "LEADERSHIP TEAM", "OUR JOURNEY", "CONTACT US", "LATEST NEWS"
 ];
 
-const Footer = () => {
+const Footer = ({ controller }) => {
+    const handleLinkClick = (e, label) => {
+        e.preventDefault();
+        // Format label to Title Case for controller consistency
+        const formattedLabel = label.split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+        controller.handleNavClick(formattedLabel);
+    };
+
     return (
         <footer className="site-footer">
             <div className="footer-separator-line"></div>
@@ -62,7 +71,7 @@ const Footer = () => {
                         <ul className="quick-links-list">
                             {quickLinks.map((link, index) => (
                                 <li key={index}>
-                                    <a href="#">
+                                    <a href="#" onClick={(e) => handleLinkClick(e, link)}>
                                         <ArrowRight size={14} className="link-arrow" /> {link}
                                     </a>
                                 </li>

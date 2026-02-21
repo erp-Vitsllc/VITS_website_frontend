@@ -12,7 +12,7 @@ const partners = [
 
 const PartnersSection = () => {
     return (
-        <section className="partners-section">
+        <section id="partners" className="partners-section">
             <div className="partners-container">
                 <div className="partners-text">
                     <h2 className="partners-title">OUR PARTNERS</h2>

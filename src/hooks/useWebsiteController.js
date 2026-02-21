@@ -1,12 +1,59 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { siteConfig } from '../models/siteConfig';
 
 export const useWebsiteController = () => {
     const [activeTab, setActiveTab] = useState('Home');
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const handleNavClick = (label) => {
         setActiveTab(label);
-        // Add logic for navigation or scroll if needed
+        setIsDrawerOpen(false);
+
+        if (label === 'Subsidiaries') {
+            navigate('/subsidiaries');
+            return;
+        }
+
+        if (label === 'Contact Us') {
+            navigate('/contact');
+            return;
+        }
+
+        // Mapping labels to IDs
+        const labelToId = {
+            'Home': 'home',
+            'Solutions': 'solutions',
+            'Industries': 'industries',
+            'Partners': 'partners',
+            'About Us': 'about-us',
+            'Leadership Team': 'leadership',
+            'Contact Us': 'contact',
+            'Our Journey': 'journey',
+            'Latest News': 'news',
+            'Support': 'support'
+        };
+
+        const sectionId = labelToId[label] || label.toLowerCase().replace(/\s+/g, '-');
+
+        if (location.pathname !== '/') {
+            // If not on landing page, go home first
+            navigate('/', { state: { scrollTo: sectionId } });
+        } else {
+            // On landing page, scroll directly
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            } else if (label === 'Home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    };
+
+    const toggleDrawer = () => {
+        setIsDrawerOpen(!isDrawerOpen);
     };
 
     const openWhatsApp = () => {
@@ -15,7 +62,9 @@ export const useWebsiteController = () => {
 
     return {
         activeTab,
+        isDrawerOpen,
         handleNavClick,
+        toggleDrawer,
         openWhatsApp,
         config: siteConfig
     };

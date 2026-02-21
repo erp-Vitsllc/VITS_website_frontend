@@ -55,7 +55,7 @@ const SolutionsSection = () => {
     };
 
     return (
-        <section className="solutions-section">
+        <section id="solutions" className="solutions-section">
             <div className="solutions-header">
                 <h2 className="solutions-title">SOLUTION WE OFFER</h2>
             </div>

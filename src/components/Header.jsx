@@ -23,7 +23,11 @@ const Header = ({ controller }) => {
             </div>
 
             <div className="main-header">
-                <div className="logo-container">
+                <div
+                    className="logo-container"
+                    onClick={() => handleNavClick('Home')}
+                    style={{ cursor: 'pointer' }}
+                >
                     <img
                         src={logoPath}
                         alt="VEGA Logo"
@@ -58,7 +62,7 @@ const Header = ({ controller }) => {
                     <button className="icon-btn whatsapp-icon" onClick={openWhatsApp}>
                         <MessageCircle size={24} />
                     </button>
-                    <button className="icon-btn">
+                    <button className="icon-btn" onClick={controller.toggleDrawer}>
                         <Menu size={24} />
                     </button>
                 </div>
