@@ -1,29 +1,42 @@
 import React from 'react';
 import { X, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const NavigationDrawer = ({ isOpen, onClose, onNavClick, config }) => {
+    const location = useLocation();
+
     const menuItems = [
         "HOME",
         "ABOUT US",
         "LEADERSHIP TEAM",
         "OUR JOURNEY",
-        "LATEST NEWS",
+        "BLOG",
+        "TERMS OF SERVICE",
         "SUPPORT",
-        "CONTACT US",
-        "SOLUTIONS",
-        "INDUSTRIES",
-        "SUBSIDIARIES",
-        "PARTNERS"
+        "CONTACT US"
     ];
 
-    // Map labels to config label if they exist, or use as is
+    const getIsActive = (label) => {
+        const path = location.pathname;
+        if (label === 'HOME' && path === '/') return true;
+        if (label === 'ABOUT US' && path === '/about-us') return true;
+        if (label === 'LEADERSHIP TEAM' && path === '/leadership') return true;
+        if (label === 'OUR JOURNEY' && path === '/our-journey') return true;
+        if (label === 'BLOG' && path === '/blog') return true;
+        if (label === 'TERMS OF SERVICE' && path === '/terms') return true;
+        if (label === 'SUPPORT' && path === '/support') return true;
+        if (label === 'CONTACT US' && path === '/contact') return true;
+        return false;
+    };
+
     const handleLinkClick = (e, label) => {
         e.preventDefault();
-        // Capitalize only first letter for matching controller logic if needed, 
-        // but current logic uses lowercase conversion so it's fine.
+        
+        // Convert to Title Case to match useWebsiteController logic
         const displayLabel = label.split(' ')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
             .join(' ');
+
         onNavClick(displayLabel);
     };
 
@@ -49,7 +62,7 @@ const NavigationDrawer = ({ isOpen, onClose, onNavClick, config }) => {
                             <a
                                 key={item}
                                 href="#"
-                                className={`drawer-nav-link ${item === 'HOME' ? 'active' : ''}`}
+                                className={`drawer-nav-link ${getIsActive(item) ? 'active' : ''}`}
                                 onClick={(e) => handleLinkClick(e, item)}
                             >
                                 {item}

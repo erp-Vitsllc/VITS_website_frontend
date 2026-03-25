@@ -1,87 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const industries = [
     {
         title: "MINING",
         description: "State of the art mining systems to unlock and enhance new levels of productivity.",
-        link: "#"
+        link: "/mining",
+        image: "/assets/Vega-Digital-Mining.webp"
     },
     {
         title: "MANUFACTURING",
         description: "Cutting Edge Manufacturing Systems for precision and efficiency.",
-        link: "#"
+        link: "/manufacturing",
+        image: "/assets/manufacturing-solutions.webp"
     },
     {
         title: "INFRASTRUCTURE",
         description: "Seamless System Integration for complex Infrastructure operations, development and management.",
-        link: "#"
+        link: "/infrastructure",
+        image: "/assets/Vega-Digital-Infrastructure.webp"
     },
     {
         title: "RETAIL",
         description: "Enhancing customer experience and thru data driven and engaging interface systems.",
-        link: "#"
+        link: "/retail",
+        image: "/assets/Vega-Digital-Retail.webp"
     },
     {
         title: "REAL ESTATE",
         description: "Redefining Real Estate and unlocking its management thru Integrated Digital Transformation Solutions.",
-        link: "#"
+        link: "/real-estate",
+        image: "/assets/Vega-Digital-Real-Estate.webp"
     }
 ];
 
 const IndustriesSection = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            handleNext();
-        }, 5000);
-        return () => clearInterval(timer);
-    }, [currentIndex]);
-
-    const handleNext = () => {
-        setCurrentIndex((prev) => (prev + 1) % industries.length);
-    };
-
-    const handlePrev = () => {
-        setCurrentIndex((prev) => (prev - 1 + industries.length) % industries.length);
-    };
-
-    const getCardClass = (index) => {
-        if (index === currentIndex) return "solution-card active";
-        if (index === (currentIndex - 1 + industries.length) % industries.length) return "solution-card prev";
-        if (index === (currentIndex + 1) % industries.length) return "solution-card next";
-        return "solution-card hidden";
-    };
-
     return (
         <section id="industries" className="solutions-section industries-section">
             <div className="solutions-header">
                 <h2 className="solutions-title">INDUSTRIES WE SERVE</h2>
             </div>
 
-            <div className="solutions-slider-container">
-                <button className="slider-arrow left" onClick={handlePrev}>
-                    <ArrowLeft size={24} />
-                </button>
-
-                <div className="solutions-slider">
+            <div className="solutions-grid-container">
+                <div className="solutions-grid">
                     {industries.map((item, index) => (
-                        <div key={index} className={getCardClass(index)}>
+                        <Link key={index} 
+                            to={item.link}
+                            className="solution-card"
+                            style={{
+                                backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url(${item.image})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                textDecoration: 'none'
+                            }}
+                        >
                             <div className="card-content">
                                 <h3 className="card-title">{item.title}</h3>
                                 <p className="card-description">{item.description}</p>
-                                <a href={item.link} className="read-more">
+                                <span className="read-more">
                                     Read More <ArrowRight size={16} />
-                                </a>
+                                </span>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
-
-                <button className="slider-arrow right" onClick={handleNext}>
-                    <ArrowRight size={24} />
-                </button>
             </div>
         </section>
     );

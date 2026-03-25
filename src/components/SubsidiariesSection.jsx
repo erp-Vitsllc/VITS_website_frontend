@@ -1,20 +1,15 @@
 import React from 'react';
 
 const SubsidiariesSection = () => {
-    const videoPath = "/assets/subsidiaries_bg.mov";
+    const bgImage = "/assets/VITS-Partners.webp";
 
     return (
         <section id="subsidiaries" className="subsidiaries-section">
-            <video
+            <img 
+                src={bgImage} 
+                alt="Subsidiaries Background" 
                 className="subsidiaries-video-bg"
-                autoPlay
-                loop
-                muted
-                playsInline
-            >
-                <source src={videoPath} type="video/quicktime" />
-                <source src={videoPath} type="video/mp4" />
-            </video>
+            />
             <div className="subsidiaries-overlay"></div>
 
             <div className="subsidiaries-content">

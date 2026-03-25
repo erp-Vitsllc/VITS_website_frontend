@@ -2,12 +2,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Facebook, Instagram, Linkedin, ExternalLink } from 'lucide-react';
 
 const partners = [
-    { name: 'HIKVISION', logo: '/assets/hikvision.png', facebook: '#', instagram: '#', linkedin: '#' },
-    { name: 'Absen Energy', logo: '/assets/absenenery.png', facebook: '#', linkedin: '#' },
-    { name: 'inferrix', logo: '/assets/inferrix.png', linkedin: '#' },
-    { name: 'Videonetics', logo: '/assets/videonetics.png', facebook: '#', instagram: '#', linkedin: '#' },
-    { name: 'trex', logo: '/assets/trex.png', linkedin: '#' },
-    { name: 'ZEBRA', logo: '/assets/zebra.png', facebook: '#', linkedin: '#' },
+    { name: 'HIKVISION', logo: '/assets/hikvision.png', facebook: 'https://www.facebook.com/HikvisionHQ/', instagram: 'https://www.instagram.com/hikvision/', linkedin: 'https://www.linkedin.com/company/hikvision/' },
+    { name: 'Absen Energy', logo: '/assets/absenenery.png', facebook: 'https://www.facebook.com/absenenergy', linkedin: 'https://www.linkedin.com/company/absen-energy/' },
+    { name: 'inferrix', logo: '/assets/inferrix.png', linkedin: 'https://www.linkedin.com/company/inferrix-limited/' },
+    { name: 'Videonetics', logo: '/assets/videonetics.png', facebook: 'https://www.facebook.com/VideoneticsHQ/', instagram: 'https://www.instagram.com/videonetics/', linkedin: 'https://www.linkedin.com/company/videonetics/' },
+    { name: 'trex', logo: '/assets/trex.png', linkedin: 'https://www.linkedin.com/company/trexmop/' },
+    { name: 'ZEBRA', logo: '/assets/zebra.png', facebook: 'https://www.facebook.com/ZebraTechnologiesAPAC/', linkedin: 'https://www.linkedin.com/company/zebra-technologies/' },
 ];
 
 const PartnersSection = () => {
@@ -34,9 +34,9 @@ const PartnersSection = () => {
                             <div className="partner-info">
                                 <a href="#" className="visit-website">VISIT WEBSITE</a>
                                 <div className="partner-socials">
-                                    {partner.facebook && <a href={partner.facebook}><Facebook size={16} /></a>}
-                                    {partner.instagram && <a href={partner.instagram}><Instagram size={16} /></a>}
-                                    {partner.linkedin && <a href={partner.linkedin}><Linkedin size={16} /></a>}
+                                    {partner.facebook && partner.facebook !== '#' && <a href={partner.facebook} target="_blank" rel="noopener noreferrer"><Facebook size={16} /></a>}
+                                    {partner.instagram && partner.instagram !== '#' && <a href={partner.instagram} target="_blank" rel="noopener noreferrer"><Instagram size={16} /></a>}
+                                    {partner.linkedin && partner.linkedin !== '#' && <a href={partner.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={16} /></a>}
                                 </div>
                             </div>
                         </div>

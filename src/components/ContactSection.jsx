@@ -1,22 +1,15 @@
 import React from 'react';
 
 const ContactSection = () => {
-    // Using a placeholder or a generic dark video if available, 
-    // but for now, I'll use a dark background style to match the screenshot.
-    const videoPath = "/assets/subsidiaries_bg.mov"; // Reusing the dark cinematic video if appropriate
+    const bgPath = "/assets/Contact-Number-Vega-Digital-IT-Solutions.webp";
 
     return (
         <section id="contact-hero" className="contact-hero-section">
-            <video
+            <img
+                src={bgPath}
                 className="contact-video-bg"
-                autoPlay
-                loop
-                muted
-                playsInline
-            >
-                <source src={videoPath} type="video/quicktime" />
-                <source src={videoPath} type="video/mp4" />
-            </video>
+                alt="Contact Background"
+            />
             <div className="contact-overlay"></div>
 
             <div className="contact-hero-content">

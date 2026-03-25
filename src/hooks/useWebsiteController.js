@@ -22,6 +22,36 @@ export const useWebsiteController = () => {
             return;
         }
 
+        if (label === 'About Us') {
+            navigate('/about-us');
+            return;
+        }
+
+        if (label === 'Leadership Team') {
+            navigate('/leadership');
+            return;
+        }
+
+        if (label === 'Our Journey') {
+            navigate('/our-journey');
+            return;
+        }
+
+        if (label === 'Blog') {
+            navigate('/blog');
+            return;
+        }
+
+        if (label === 'Support') {
+            navigate('/support');
+            return;
+        }
+
+        if (label === 'Terms Of Service') {
+            navigate('/terms');
+            return;
+        }
+
         // Mapping labels to IDs
         const labelToId = {
             'Home': 'home',
@@ -32,7 +62,8 @@ export const useWebsiteController = () => {
             'Leadership Team': 'leadership',
             'Contact Us': 'contact',
             'Our Journey': 'journey',
-            'Latest News': 'news',
+            'Blog': 'blog',
+            'Terms Of Service': 'terms',
             'Support': 'support'
         };
 

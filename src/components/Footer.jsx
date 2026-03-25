@@ -3,29 +3,29 @@ import { ArrowRight } from 'lucide-react';
 
 const blogs = [
     {
-        title: "ELV System and Smart Parking: How IoT Enhances Parking Management",
-        date: "FEBRUARY 10, 2026",
-        image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=2070&auto=format&fit=crop"
+        title: "TRANSFORM YOUR BUSINESS OPERATIONS WITH ADVANCED AV SOLUTIONS",
+        date: "22 DEC",
+        image: "/assets/Transform_Your_Business_Operations_Hero_Image-480x320.webp"
     },
     {
-        title: "How CCTV Analytics Software Improves Security for Dubai Businesses",
-        date: "FEBRUARY 6, 2026",
-        image: "https://images.unsplash.com/photo-1557597774-9d2739f85a94?q=80&w=2040&auto=format&fit=crop"
+        title: "WHY YOUR CCTV INSTALLATION COMPANY CHOICE MATTERS FOR SECURITY",
+        date: "19 DEC",
+        image: "/assets/Why_Your_CCTV_Installation_Company_Choice_Matters_Hero_Image-480x320.webp"
     },
     {
-        title: "SIRA Approved CCTV for Retail Chains: Compliance Tips",
-        date: "FEBRUARY 4, 2026",
-        image: "https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=2080&auto=format&fit=crop"
+        title: "ELV SYSTEM FOR BUILDINGS IN UAE: KEY MISTAKES TO AVOID DURING IMPLEMENTATION",
+        date: "27 JAN",
+        image: "/assets/ELV_System_for_Buildings_in_UAE_Hero_Image-480x320.webp"
     },
     {
-        title: "ELV System for Buildings in UAE: Key Mistakes to Avoid During Implementation",
-        date: "JANUARY 27, 2026",
-        image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+        title: "ACCESS CONTROL SYSTEM DUBAI: NEXT-GEN SECURITY FOR BUSINESSES",
+        date: "22 JAN",
+        image: "/assets/Access_Control_System_Dubai_Hero_Image-480x320.webp"
     }
 ];
 
 const quickLinks = [
-    "ABOUT US", "LEADERSHIP TEAM", "OUR JOURNEY", "CONTACT US", "LATEST NEWS"
+    "ABOUT US", "LEADERSHIP TEAM", "OUR JOURNEY", "CONTACT US", "BLOG", "TERMS OF SERVICE"
 ];
 
 const Footer = ({ controller }) => {
@@ -58,7 +58,7 @@ const Footer = ({ controller }) => {
                             </div>
                         ))}
                     </div>
-                    <a href="#" className="view-more-link">
+                    <a href="#" className="view-more-link" onClick={(e) => handleLinkClick(e, 'BLOG')}>
                         VIEW MORE <ArrowRight size={16} />
                     </a>
                 </div>

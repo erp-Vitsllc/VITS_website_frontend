@@ -15,9 +15,9 @@ export const siteConfig = {
         { label: "Contact Us", path: "/contact" }
     ],
     socials: [
-        { icon: "instagram", url: "https://instagram.com" },
-        { icon: "facebook", url: "https://facebook.com" },
-        { icon: "linkedin", url: "https://linkedin.com" }
+        { icon: "instagram", url: "https://www.instagram.com/vitsllc/" },
+        { icon: "facebook", url: "https://www.facebook.com/VITSDUBAI" },
+        { icon: "linkedin", url: "https://www.linkedin.com/company/vitsllc/" }
     ],
     hero: {
         title: "Solutions Beyond Technology",
