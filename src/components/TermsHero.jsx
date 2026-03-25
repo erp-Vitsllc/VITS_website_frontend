@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TermsHero = () => {
-    const bgPath = "/assets/VITS-Latest-News.webp"; // Using the same premium tech background
+    const bgPath = "/assets/Contact-Number-Vega-Digital-IT-Solutions.webp"; 
 
     return (
         <section id="terms-hero" className="contact-hero-section">
@@ -9,7 +9,7 @@ const TermsHero = () => {
                 src={bgPath}
                 className="contact-video-bg"
                 alt="Terms Background"
-                style={{ filter: 'brightness(0.6) hue-rotate(280deg)' }} 
+                style={{ filter: 'brightness(0.5)' }} 
             />
             <div className="contact-overlay" style={{ background: 'linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent)' }}></div>
 
