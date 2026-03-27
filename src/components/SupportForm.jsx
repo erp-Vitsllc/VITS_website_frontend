@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { toast } from 'sonner';
+
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const SupportForm = () => {
     const [activeTab, setActiveTab] = useState('SUPPORT');
@@ -19,9 +22,74 @@ const SupportForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert('Form submitted successfully!');
+
+        const payload = {
+            inquiryType: activeTab === 'SUPPORT' ? 'support' : 'enquiry',
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message
+        };
+
+        const candidateUrls = API_BASE_URL
+            ? [`${API_BASE_URL}/api/contact`]
+            : ['/api/contact'];
+
+        let response;
+        let lastError;
+        let backendMessage = '';
+
+        for (const url of candidateUrls) {
+            try {
+                response = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    break;
+                }
+
+                const errorBody = await response.json().catch(() => null);
+                if (errorBody?.message) {
+                    backendMessage = errorBody.message;
+                }
+            } catch (err) {
+                lastError = err;
+            }
+        }
+
+        if (!response || !response.ok) {
+            const msg = lastError?.message || backendMessage;
+            if (msg && msg !== 'Failed to fetch') {
+                toast.error('Request failed', {
+                    description: msg
+                });
+            } else {
+                toast.error('Backend is not reachable', {
+                    description: 'Start it with "npm run dev" in backend, or set VITE_API_URL in frontend .env'
+                });
+            }
+            return;
+        }
+
+        await response.json().catch(() => ({}));
+
+        toast.success('Form submitted successfully', {
+            description: 'Your request has been received. Our team will contact you shortly.'
+        });
+        setFormData({
+            name: '',
+            phone: '',
+            email: '',
+            subject: '',
+            message: '',
+            acceptedTerms: false
+        });
     };
 
     const linePattern = "/assets/Lines-3.webp";

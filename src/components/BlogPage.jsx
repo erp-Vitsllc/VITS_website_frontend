@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Header from './Header';
 import BlogHero from './BlogHero';
-import BlogSlider from './BlogSlider';
+import BlogGrid from './BlogGrid';
 import Footer from './Footer';
 import NavigationDrawer from './NavigationDrawer';
 import { useWebsiteController } from '../hooks/useWebsiteController';
@@ -25,7 +25,7 @@ const BlogPage = () => {
             />
             <div className="page-content-wrapper">
                 <BlogHero />
-                <BlogSlider />
+                <BlogGrid />
                 {/* Blog content posts can go here later */}
             </div>
             <Footer controller={controller} />

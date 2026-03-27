@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Headset, Mail } from 'lucide-react';
+import { toast } from 'sonner';
+
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -11,6 +14,7 @@ const ContactForm = () => {
         message: '',
         acceptTerms: false
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -20,10 +24,79 @@ const ContactForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Submitted:', formData);
-        alert('Thank you for your message! We will get back to you soon.');
+        setIsSubmitting(true);
+
+        try {
+            const payload = {
+                inquiryType: 'contact',
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                company: formData.company,
+                designation: formData.designation,
+                message: formData.message
+            };
+
+            const candidateUrls = API_BASE_URL
+                ? [`${API_BASE_URL}/api/contact`]
+                : ['/api/contact'];
+
+            let response;
+            let lastError;
+            let backendMessage = '';
+
+            for (const url of candidateUrls) {
+                try {
+                    response = await fetch(url, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        break;
+                    }
+
+                    // Backend is reachable; capture its response message.
+                    const errorBody = await response.json().catch(() => null);
+                    if (errorBody?.message) {
+                        backendMessage = errorBody.message;
+                    }
+                } catch (err) {
+                    lastError = err;
+                }
+            }
+
+            if (!response || !response.ok) {
+                throw lastError || new Error(backendMessage || "Backend setup required");
+            }
+
+            const result = await response.json();
+
+            if (result.success === true) {
+                toast.success('Form submitted successfully', {
+                    description: 'Your request has been received. Our team will contact you shortly.'
+                });
+                setFormData({
+                    name: '', phone: '', email: '', designation: '', 
+                    company: '', message: '', acceptTerms: false
+                });
+            } else {
+                throw new Error("Backend setup required");
+            }
+        } catch (error) {
+            console.error("Linkage Error:", error);
+            const msg = error?.message?.trim();
+            if (msg && msg !== 'Failed to fetch') {
+                alert(`Request failed: ${msg}`);
+            } else {
+                alert('Your backend is not reachable right now.\n\nStart it with "npm run dev" inside the backend folder, or set VITE_API_URL in frontend .env to your backend URL.');
+            }
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -174,12 +247,13 @@ const ContactForm = () => {
                             </label>
                         </div>
 
-                        <button type="submit" className="vits-submit-btn">
-                            Submit
+                        <button type="submit" className="vits-submit-btn" disabled={isSubmitting}>
+                            {isSubmitting ? 'Submitting...' : 'Submit'}
                         </button>
                     </form>
                 </div>
             </div>
+            
         </div>
     );
 };
