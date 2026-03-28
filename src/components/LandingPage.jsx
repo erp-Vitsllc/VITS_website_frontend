@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header';
 import Hero from './Hero';
 import SocialSidebar from './SocialSidebar';
@@ -18,7 +18,7 @@ const LandingPage = () => {
     const { config, isDrawerOpen, toggleDrawer, handleNavClick } = controller;
     const location = useLocation();
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (location.state?.scrollTo) {
             const element = document.getElementById(location.state.scrollTo);
             if (element) {
@@ -26,7 +26,6 @@ const LandingPage = () => {
                     element.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
             }
-            // Clear state to prevent scrolling again on refresh
             window.history.replaceState({}, document.title);
         }
     }, [location]);

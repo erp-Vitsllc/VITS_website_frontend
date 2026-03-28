@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Headset, Mail } from 'lucide-react';
 import { toast } from 'sonner';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+import { getContactPostUrls } from '../utils/contactApi';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -39,9 +38,7 @@ const ContactForm = () => {
                 message: formData.message
             };
 
-            const candidateUrls = API_BASE_URL
-                ? [`${API_BASE_URL}/api/contact`]
-                : ['/api/contact'];
+            const candidateUrls = getContactPostUrls();
 
             let response;
             let lastError;
@@ -90,9 +87,13 @@ const ContactForm = () => {
             console.error("Linkage Error:", error);
             const msg = error?.message?.trim();
             if (msg && msg !== 'Failed to fetch') {
-                alert(`Request failed: ${msg}`);
+                toast.error('Request failed', {
+                    description: msg
+                });
             } else {
-                alert('Your backend is not reachable right now.\n\nStart it with "npm run dev" inside the backend folder, or set VITE_API_URL in frontend .env to your backend URL.');
+                toast.error('Backend is not reachable', {
+                    description: 'Start it with "npm run dev" in backend, or set VITE_API_URL in frontend .env'
+                });
             }
         } finally {
             setIsSubmitting(false);
@@ -114,7 +115,7 @@ const ContactForm = () => {
                             <div className="office-contact">
                                 <span><Headset size={14} /> +971 4 340 9988</span>
                                 <span className="separator">|</span>
-                                <span><Mail size={14} /> hello@vitsllc.com</span>
+                                <span><Mail size={14} /> hello@vegadigital.ae</span>
                             </div>
                         </div>
 

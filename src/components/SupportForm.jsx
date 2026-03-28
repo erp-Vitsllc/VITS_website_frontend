@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'sonner';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+import { getContactPostUrls } from '../utils/contactApi';
 
 const SupportForm = () => {
     const [activeTab, setActiveTab] = useState('SUPPORT');
@@ -34,9 +33,7 @@ const SupportForm = () => {
             message: formData.message
         };
 
-        const candidateUrls = API_BASE_URL
-            ? [`${API_BASE_URL}/api/contact`]
-            : ['/api/contact'];
+        const candidateUrls = getContactPostUrls();
 
         let response;
         let lastError;
@@ -122,7 +119,7 @@ const SupportForm = () => {
                     </h2>
                     <p className="support-subtext">
                         {activeTab === 'SUPPORT' 
-                            ? "Please enter your Name, Phone Number, and Email, along with the Subject and a detailed description of your issue. You may also attach reference images (up to 5MB). Our support team will get in touch with you shortly."
+                            ? "Please enter your Name, Phone Number, and Email, along with the Subject and a detailed description of your issue. Our support team will get in touch with you shortly."
                             : "How can we assist you? Please share your requirements, and our sales team will reach out to you as soon as possible. We look forward to serving you."
                         }
                     </p>
@@ -180,12 +177,6 @@ const SupportForm = () => {
                                 required
                             ></textarea>
                         </div>
-
-                        {activeTab === 'SUPPORT' && (
-                            <div className="form-group full-width">
-                                <input type="file" className="file-input" />
-                            </div>
-                        )}
 
                         <div className="terms-checkbox">
                             <input 

@@ -4,34 +4,34 @@ import { Link } from 'react-router-dom';
 
 const solutions = [
     {
-        title: "IoT",
-        description: "Transform your operations with real time data and analytics.",
-        link: "/iot",
-        image: "/assets/Vega-Digital-IoT.webp"
+        title: 'IoT',
+        description: 'Transform your operations with real time data and analytics.',
+        link: '/iot',
+        image: '/assets/Vega-Digital-IoT.webp'
     },
     {
-        title: "ROBOTICS",
-        description: "Step into the future with Enterprise level Robotics solution.",
-        link: "/robotics",
-        image: "/assets/Vega-Digital-Robotics.webp"
+        title: 'ROBOTICS',
+        description: 'Step into the future with Enterprise level Robotics solution.',
+        link: '/robotics',
+        image: '/assets/Vega-Digital-Robotics.webp'
     },
     {
-        title: "SOFTWARE",
-        description: "Next Gen Software Solutions to unlock your business potential.",
-        link: "/software",
-        image: "/assets/Vega-Digital-Software-Development.webp"
+        title: 'SOFTWARE',
+        description: 'Next Gen Software Solutions to unlock your business potential.',
+        link: '/software',
+        image: '/assets/Vega-Digital-Software-Development.webp'
     },
     {
-        title: "ELV",
-        description: "Smart Infrastructure Management thru Innovative Integrated Systems.",
-        link: "/elv",
-        image: "/assets/Vega-Digital-ELV.webp"
+        title: 'ELV',
+        description: 'Smart Infrastructure Management thru Innovative Integrated Systems.',
+        link: '/elv',
+        image: '/assets/Vega-Digital-ELV.webp'
     },
     {
-        title: "Digital Signage System",
-        description: "Digital Signage Systems that deliver real-time content to boost customer experience and visibility.",
-        link: "#",
-        image: "/assets/Digtial-Signage-System.webp"
+        title: 'Digital Signage System',
+        description: 'Digital Signage Systems that deliver real-time content to boost customer experience and visibility.',
+        link: '#',
+        image: '/assets/Digtial-Signage-System.webp'
     }
 ];
 
@@ -45,25 +45,26 @@ const SolutionsSection = () => {
             <div className="solutions-grid-container">
                 <div className="solutions-grid">
                     {solutions.map((item, index) => (
-                        <Link key={index} 
-                            to={item.link}
+                        <div
+                            key={index}
                             className="solution-card"
                             style={{
                                 backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url(${item.image})`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat',
-                                textDecoration: 'none'
+                                backgroundRepeat: 'no-repeat'
                             }}
                         >
                             <div className="card-content">
-                                <h3 className="card-title">{item.title}</h3>
-                                <p className="card-description">{item.description}</p>
-                                <span className="read-more">
+                                <Link to={item.link} className="solution-card-heading-link">
+                                    <h3 className="card-title">{item.title}</h3>
+                                    <p className="card-description">{item.description}</p>
+                                </Link>
+                                <Link to={item.link} className="read-more">
                                     Read More <ArrowRight size={16} />
-                                </span>
+                                </Link>
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             </div>
