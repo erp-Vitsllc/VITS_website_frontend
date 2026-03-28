@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const AboutSection = () => {
     return (
@@ -27,9 +28,9 @@ const AboutSection = () => {
                         Join us in creating a connected future thru a journey of innovation where advanced
                         technology meets unparalleled service.
                     </p>
-                    <a href="#contact" className="about-link">
+                    <Link to="/about-us" className="about-link">
                         ABOUT US <ArrowRight size={16} />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>
